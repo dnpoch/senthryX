@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "sentrix-fabric",
+	"version": "${version}",
+	"name": "SentriX-fabric",
+	"description": "IP based access server access control for fabric servers.",
+	"authors": [
+		"pochixcx"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/modid/icon.png",
+	"environment": "server",
+	"entrypoints": {
+		"main": [
+			"com.pochixcx.Sentrix"
+		]
+	},
+	"mixins": [
+		"modid.mixins.json",
+		{
+			"config": "modid.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
