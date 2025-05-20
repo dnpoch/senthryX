@@ -3,6 +3,7 @@ package com.pochixcx.minecraft;
 import static com.pochixcx.Sentrix.ADMIN_CHANNEL;
 import static com.pochixcx.Sentrix.BROADCAST_CHANNELS;
 import static com.pochixcx.Sentrix.CONFIG;
+import static com.pochixcx.Sentrix.jda;
 import static com.pochixcx.Sentrix.LOGGER;
 
 import java.util.UUID;
@@ -32,15 +33,17 @@ public class LoginEventListener {
 
         if (player == null) {
 
-            MessageEmbed embed = new EmbedBuilder()
-                    .setTitle("Login attempt from unknown player")
-                    .addField("", "**🧑‍💻 Username:** " + username, false)
-                    .addField("", "**🆔 UUID: **" + uuid.toString(), false)
-                    .addField("", "**🌐 IP address: **" + ip, false)
-                    .setColor(0xFF7043)
-                    .build();
+            if (jda != null) {
+                MessageEmbed embed = new EmbedBuilder()
+                        .setTitle("Login attempt from unknown player")
+                        .addField("", "**🧑‍💻 Username:** " + username, false)
+                        .addField("", "**🆔 UUID: **" + uuid.toString(), false)
+                        .addField("", "**🌐 IP address: **" + ip, false)
+                        .setColor(0xFF7043)
+                        .build();
 
-            ADMIN_CHANNEL.sendMessageEmbeds(embed).queue();
+                ADMIN_CHANNEL.sendMessageEmbeds(embed).queue();
+            }
             return LoginResult.deny(CONFIG.kick_message);
         }
 
@@ -48,24 +51,26 @@ public class LoginEventListener {
             return LoginResult.allow();
         }
 
-        MessageEmbed embed = new EmbedBuilder()
-                .setTitle("Login attempt from unknown ip")
-                .addField("", "**🧑‍💻 Username:** " + username, false)
-                .addField("", "**🌐 IP address:** " + Utils.obfuscateIp(ip), false)
-                .setColor(0xFF0000)
-                .build();
+        if (jda != null) {
+            MessageEmbed embed = new EmbedBuilder()
+                    .setTitle("Login attempt from unknown ip")
+                    .addField("", "**🧑‍💻 Username:** " + username, false)
+                    .addField("", "**🌐 IP address:** " + Utils.obfuscateIp(ip), false)
+                    .setColor(0xFF0000)
+                    .build();
 
-        BROADCAST_CHANNELS.forEach(channel -> {
-            try {
-                channel.sendMessageEmbeds(embed).queue();
-            } catch (Exception e) {
-                if (e instanceof MissingAccessException) {
-                    LOGGER.error("Error sending message to channel: " + channel.getName() + " " + e.getMessage());
-                    return;
+            BROADCAST_CHANNELS.forEach(channel -> {
+                try {
+                    channel.sendMessageEmbeds(embed).queue();
+                } catch (Exception e) {
+                    if (e instanceof MissingAccessException) {
+                        LOGGER.error("Error sending message to channel: " + channel.getName() + " " + e.getMessage());
+                        return;
+                    }
+
                 }
-
-            }
-        });
+            });
+        }
 
         return LoginResult.deny(CONFIG.unknown_ip_message);
 

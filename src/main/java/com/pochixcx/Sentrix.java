@@ -56,31 +56,34 @@ public class Sentrix implements ModInitializer {
 
 			PlayerManager.load();
 
-			jda = JDABuilder.createDefault(CONFIG.bot_token)
-					.enableIntents(
-							GatewayIntent.GUILD_MEMBERS,
-							GatewayIntent.MESSAGE_CONTENT)
-					.setActivity(Activity.playing(CONFIG.presence))
-					.addEventListeners(new SlashCommandListener(), new ModalListener())
-					.build();
+			if (CONFIG.enable_discord) {
+				jda = JDABuilder.createDefault(CONFIG.bot_token)
+						.enableIntents(
+								GatewayIntent.GUILD_MEMBERS,
+								GatewayIntent.MESSAGE_CONTENT)
+						.setActivity(Activity.playing(CONFIG.presence))
+						.addEventListeners(new SlashCommandListener(), new ModalListener())
+						.build();
 
-			jda.awaitReady();
+				jda.awaitReady();
 
-			Utils.updateDiscordCommands();;
+				Utils.updateDiscordCommands();
 
-			ADMIN_CHANNEL = jda.getTextChannelById(CONFIG.admin_channel_id);
+				ADMIN_CHANNEL = jda.getTextChannelById(CONFIG.admin_channel_id);
 
-			if (ADMIN_CHANNEL == null) {
-				throw new NullPointerException("Invalid admin channel id: " + CONFIG.admin_channel_id);
-			}
-
-			CONFIG.logging_channels.forEach((channel_id) -> {
-				TextChannel channel = jda.getTextChannelById(channel_id);
-				if (channel == null) {
-					throw new NullPointerException("Invalid broadcast channel id: " + channel_id);
+				if (ADMIN_CHANNEL == null) {
+					throw new NullPointerException("Invalid admin channel id: " + CONFIG.admin_channel_id);
 				}
-				BROADCAST_CHANNELS.add(channel);
-			});
+
+				CONFIG.logging_channels.forEach((channel_id) -> {
+					TextChannel channel = jda.getTextChannelById(channel_id);
+					if (channel == null) {
+						throw new NullPointerException("Invalid broadcast channel id: " + channel_id);
+					}
+					BROADCAST_CHANNELS.add(channel);
+				});
+
+			}
 
 			CommandRegistrationCallback.EVENT
 					.register((dispatcher, registryAccess, environment) -> ConsoleCommands.register(dispatcher));

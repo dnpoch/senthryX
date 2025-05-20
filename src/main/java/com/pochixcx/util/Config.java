@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Config {
     public boolean activate = true;
+    public boolean enable_discord = true;
     public String bot_token = "";
     public String admin_channel_id = "";
     public ArrayList<String> logging_channels = new ArrayList<String>();
