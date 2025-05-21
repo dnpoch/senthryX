@@ -71,13 +71,14 @@ public class PlayerManager {
     }
 
     public static void whitelistPlayer(String username, String ip) throws PlayerManagerException {
+
+        if (whitelist.containsKey(username)) {
+            LOGGER.info("Player already exists: " + username);
+
+            throw new PlayerManagerException("Player already exists: " + username);
+        }
+
         try {
-
-            if (whitelist.containsKey(username)) {
-                LOGGER.info("Player already exists: " + username);
-
-                throw new PlayerManagerException("Player already exists" + username);
-            }
 
             Player player = new Player(username, ip);
 
@@ -95,12 +96,12 @@ public class PlayerManager {
 
     public static void removePlayer(String username) throws PlayerManagerException {
 
+        Player player = findPlayer(username);
+
+        if (player == null)
+            throw new PlayerManagerException("Player not found: " + username);
+
         try {
-            Player player = findPlayer(username);
-
-            if (player == null)
-                throw new PlayerManagerException("Player not found" + username);
-
             whitelist.remove(username);
             Writer writer = new FileWriter(config, false);
             gson.toJson(whitelist, writer);
@@ -116,15 +117,15 @@ public class PlayerManager {
     public static void addPlayerIp(String username, String ip) throws PlayerManagerException {
         Player player = findPlayer(username);
 
+        if (player == null)
+            throw new PlayerManagerException("Player not found: " + username);
+
+        if (player.getIps().contains(ip)) {
+            LOGGER.info("IP already exists for player: " + username);
+            throw new PlayerManagerException("IP already exists for player: " + username);
+        }
+
         try {
-            if (player == null)
-                throw new PlayerManagerException("Player not found" + username);
-
-            if (player.getIps().contains(ip)) {
-                LOGGER.info("IP already exists for player: " + username);
-                throw new PlayerManagerException("IP already exists for player: " + username);
-            }
-
             player.getIps().add(ip);
             player.setDateUpdated();
             Writer writer = new FileWriter(config, false);
@@ -142,10 +143,10 @@ public class PlayerManager {
 
         Player player = findPlayer(username);
 
-        try {
-            if (player == null)
-                throw new PlayerManagerException("Player not found" + username);
+        if (player == null)
+            throw new PlayerManagerException("Player not found: " + username);
 
+        try {
             if (player.getIps().contains(ip)) {
                 player.getIps().remove(ip);
                 player.setDateUpdated();
@@ -155,11 +156,16 @@ public class PlayerManager {
                 writer.close();
 
                 refresh();
+
+                return;
             }
 
             throw new PlayerManagerException("IP does not exist");
 
         } catch (Exception e) {
+            if (e instanceof PlayerManagerException) {
+                throw (PlayerManagerException) e;
+            }
             LOGGER.error("Error removing player ip: " + e.getMessage());
         }
     }
@@ -174,20 +180,6 @@ public class PlayerManager {
         } catch (Exception e) {
             LOGGER.error("Error reloading players: " + e.getMessage());
         }
-    }
-
-    public static boolean isPlayerAllowed(String username, String ip) {
-        Player player = findPlayer(username);
-
-        if (player != null) {
-            if (!player.getIps().contains(ip) || player.getIps().isEmpty()) {
-                LOGGER.info("Player not allowed: " + username + " IP: " + ip);
-                return false;
-            }
-
-            return true;
-        }
-        return false;
     }
 
 }
