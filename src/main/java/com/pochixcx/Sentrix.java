@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pochixcx.discord.ModalListener;
 import com.pochixcx.discord.SlashCommandListener;
 import com.pochixcx.minecraft.ConsoleCommands;
 import com.pochixcx.minecraft.LoginEventListener;
@@ -62,7 +61,7 @@ public class Sentrix implements ModInitializer {
 								GatewayIntent.GUILD_MEMBERS,
 								GatewayIntent.MESSAGE_CONTENT)
 						.setActivity(Activity.playing(CONFIG.presence))
-						.addEventListeners(new SlashCommandListener(), new ModalListener())
+						.addEventListeners(new SlashCommandListener())
 						.build();
 
 				jda.awaitReady();
