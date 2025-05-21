@@ -3,17 +3,12 @@ package com.pochixcx.discord;
 import static com.pochixcx.Sentrix.ADMIN_CHANNEL;
 import static com.pochixcx.Sentrix.LOGGER;
 
-import java.util.List;
-
-import com.pochixcx.discord.util.ModalBuilder;
-import com.pochixcx.discord.util.TextInputSpec;
 import com.pochixcx.player.PlayerManager;
 import com.pochixcx.util.Utils;
 
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.InteractionType;
-import net.dv8tion.jda.api.interactions.modals.Modal;
 
 public class SlashCommandListener extends ListenerAdapter {
 
@@ -33,80 +28,103 @@ public class SlashCommandListener extends ListenerAdapter {
 
             if (!event.getChannelId().equals(ADMIN_CHANNEL.getId())) {
 
-                if (event.getName().equals("whitelist")) {
+                event.reply("**You can't use this command here**").setEphemeral(true).queue();
+                return;
+            }
 
-                    List<TextInputSpec> specs = List.of(
-                            new TextInputSpec("username", "Username", "Minecraft IGN", 1, 20),
-                            new TextInputSpec("ip", "IP address", "IP address", 7, 15));
+            if (event.getName().equals("whitelist")) {
 
-                    Modal modal = ModalBuilder.build(
-                            "modal_whitelist",
-                            "Whitelist a new player",
-                            specs);
+                String username = event.getOption("username").getAsString();
+                String ip = event.getOption("ip").getAsString();
 
-                    event.replyModal(modal).queue();
-                    return;
-                }
+                try {
 
-                if (event.getName().equals("remove_player")) {
-
-                    try {
-                        String name = event.getOption("name").getAsString();
-
-                        PlayerManager.removePlayer(name);
-                        event.reply("Player " + name + " removed").queue();
-                    } catch (Exception e) {
-                        event.reply("Error: " + e.getMessage()).setEphemeral(true).queue();
+                    if (!Utils.isValidIp(ip)) {
+                        event.reply("**Invalid IP format**").setEphemeral(true).queue();
+                        return;
                     }
+
+                    PlayerManager.whitelistPlayer(username, ip);
+                    event.reply("Player " + username + " added").queue();
+                    return;
+                } catch (Exception e) {
+                    event.reply("Error: " + e.getMessage()).setEphemeral(true).queue();
+                    return;
                 }
+            }
 
-                if (event.getName().equals("add_ip")) {
+            if (event.getName().equals("remove_player")) {
 
-                    List<TextInputSpec> specs = List.of(
-                            new TextInputSpec("username", "Username", "Minecraft IGN", 1, 20),
-                            new TextInputSpec("ip", "IP address", "IP address", 7, 15));
+                try {
+                    String name = event.getOption("name").getAsString();
 
-                    Modal modal = ModalBuilder.build(
-                            "modal_add_ip",
-                            "Add a new player IP address",
-                            specs);
+                    PlayerManager.removePlayer(name);
+                    event.reply("Player " + name + " removed").queue();
 
-                    event.replyModal(modal).queue();
+                    return;
+                } catch (Exception e) {
+                    event.reply("Error: " + e.getMessage()).setEphemeral(true).queue();
+                }
+            }
+
+            if (event.getName().equals("add_ip")) {
+
+                String username = event.getOption("username").getAsString();
+                String ip = event.getOption("ip").getAsString();
+
+                if (!Utils.isValidIp(ip)) {
+                    event.reply("**Invalid IP format**").setEphemeral(true).queue();
+                    return;
+                }
+                try {
+                    PlayerManager.addPlayerIp(username, ip);
+                    event.reply("**IP added, " + username + "can now access the server**").setEphemeral(true)
+                            .queue();
+                    return;
+
+                } catch (Exception e) {
+                    event.reply("Error: " + e.getMessage()).setEphemeral(true).queue();
+                    return;
+                }
+            }
+
+            if (event.getName().equals("remove_ip")) {
+
+                String username = event.getOption("username").getAsString();
+                String ip = event.getOption("ip").getAsString();
+
+                if (!Utils.isValidIp(ip)) {
+                    event.reply("**Invalid IP format**").setEphemeral(true).queue();
                     return;
                 }
 
-                if (event.getName().equals("remove_ip")) {
+                try {
+                    PlayerManager.removePlayerIp(username, ip);
+                    event.reply("**Player IP removed**").setEphemeral(true).queue();
+                    return;
 
-                    List<TextInputSpec> specs = List.of(
-                            new TextInputSpec("username", "Username", "Minecraft IGN", 1, 20),
-                            new TextInputSpec("ip", "IP address", "IP address", 7, 15));
+                } catch (Exception e) {
+                    event.reply("Error: " + e.getMessage()).setEphemeral(true).queue();
 
-                    Modal modal = ModalBuilder.build(
-                            "modal_remove_ip",
-                            "Remove a player's IP address",
-                            specs);
-                    event.replyModal(modal).queue();
                     return;
                 }
-
-                if (event.getName().equals("count")) {
-
-                    event.reply(String.valueOf(PlayerManager.getPlayerCount())).queue();
-                    return;
-                }
-
-                // if (event.getName().equals("info")) {
-
-                // Modal modal = Utils.verifyIpModal();
-
-                // event.replyModal(modal).queue();
-                // return;
-
-                // }
 
             }
 
-            event.reply("**You can't use this command here**").setEphemeral(true).queue();
+            if (event.getName().equals("player_count")) {
+
+                event.reply(String.valueOf(PlayerManager.getPlayerCount())).queue();
+                return;
+            }
+
+            // if (event.getName().equals("info")) {
+
+            // Modal modal = Utils.verifyIpModal();
+
+            // event.replyModal(modal).queue();
+            // return;
+
+            // }
 
         } catch (
 

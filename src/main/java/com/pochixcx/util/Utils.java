@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.interactions.InteractionContextType;
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 
 public class Utils {
@@ -49,6 +50,10 @@ public class Utils {
 
                 commands.addCommands(Commands.slash("whitelist", "Whitelist a new player")
                                 .setContexts(InteractionContextType.GUILD)
+                                .addOptions(new OptionData(OptionType.STRING, "username", "Username of the player",
+                                                true),
+                                                new OptionData(OptionType.STRING, "ip", "IP address of the player",
+                                                                true))
                                 .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
 
                 commands.addCommands(Commands.slash("remove_player", "Removes a player from the whitelist")
@@ -58,10 +63,19 @@ public class Utils {
 
                 commands.addCommands(Commands.slash("add_ip", "To add a new player IP address")
                                 .setContexts(InteractionContextType.GUILD)
+                                .addOptions(new OptionData(OptionType.STRING, "username", "Username of the player",
+                                                true),
+                                                new OptionData(OptionType.STRING, "ip", "New IP address of the player",
+                                                                true))
                                 .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
 
                 commands.addCommands(Commands.slash("remove_ip", "To remove a player's IP address")
                                 .setContexts(InteractionContextType.GUILD)
+                                .addOptions(new OptionData(OptionType.STRING, "username", "Username of the player",
+                                                true),
+                                                new OptionData(OptionType.STRING, "ip",
+                                                                "IP address of the player to remove",
+                                                                true))
                                 .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
 
                 commands.addCommands(Commands.slash("player_count", "To view the total count of whitelisted players")
