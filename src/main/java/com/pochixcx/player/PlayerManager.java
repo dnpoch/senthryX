@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.reflect.TypeToken;
@@ -118,13 +119,18 @@ public class PlayerManager {
         if (player == null)
             throw new PlayerManagerException("Player not found: " + username);
 
-        if (player.getIps().contains(ip)) {
+        ArrayList<String> ips = player.getIps();
+
+        if (ips.contains(ip)) {
             LOGGER.info("IP already exists for player: " + username);
             throw new PlayerManagerException("IP already exists for player: " + username);
         }
 
         try {
-            player.getIps().add(ip);
+            if (ips.size() > 3) {
+                ips.remove(0);
+            }
+            ips.add(ip);
             player.setDateUpdated();
             Writer writer = new FileWriter(players, false);
             gson.toJson(whitelist, writer);
@@ -134,37 +140,6 @@ public class PlayerManager {
             refresh();
         } catch (Exception e) {
             LOGGER.error("Error adding player ip: " + e.getMessage());
-        }
-    }
-
-    public static void removePlayerIp(String username, String ip) throws PlayerManagerException {
-
-        Player player = findPlayer(username);
-
-        if (player == null)
-            throw new PlayerManagerException("Player not found: " + username);
-
-        try {
-            if (player.getIps().contains(ip)) {
-                player.getIps().remove(ip);
-                player.setDateUpdated();
-                Writer writer = new FileWriter(players, false);
-                gson.toJson(whitelist, writer);
-                writer.flush();
-                writer.close();
-
-                refresh();
-
-                return;
-            }
-
-            throw new PlayerManagerException("IP does not exist");
-
-        } catch (Exception e) {
-            if (e instanceof PlayerManagerException) {
-                throw (PlayerManagerException) e;
-            }
-            LOGGER.error("Error removing player ip: " + e.getMessage());
         }
     }
 
