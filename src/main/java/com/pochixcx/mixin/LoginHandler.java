@@ -35,9 +35,6 @@ public class LoginHandler {
         this.username = packet.name();
         this.uuid = packet.profileId();
         ServerLoginNetworkHandler handler = (ServerLoginNetworkHandler) (Object) this;
-        boolean isIpBanned = server.getPlayerManager().getIpBanList().isBanned(connection.getAddress());
-        if (isIpBanned)
-            return;
 
         LoginResult result = LoginEvent.ON_PLAYER_LOGIN.invoker().onLogin(uuid, username, ip);
 
@@ -57,28 +54,3 @@ public class LoginHandler {
     }
 
 }
-
-//  Legal and Ethical Terms to Consider
-// Privacy
-
-// IP addresses are considered personal data in many jurisdictions.
-
-// You should treat them with care and avoid sharing them publicly.
-
-// Consent
-
-// If you're collecting and processing IP addresses, players should know and ideally agree to it.
-
-// This can be as simple as adding a note in your server's rules, website, or terms of service.
-
-// Data Minimization
-
-// Only collect and share what's necessary. You likely don't need to post the full IP for general awareness.
-
-// Instead, notify admins or staff privately (e.g., via a private Discord channel or webhook).
-
-// Discord’s Terms of Service
-
-// Publicly sharing IP addresses might violate Discord's Terms of Service or Community Guidelines.
-
-// If reported, your bot or server could face action from Discord.

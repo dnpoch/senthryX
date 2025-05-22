@@ -5,7 +5,7 @@ public class LoginResult {
     private final boolean allowed;
     private final String kickMessage;
 
-    public LoginResult(boolean allowed, String kickMessagee) {
+    private LoginResult(boolean allowed, String kickMessagee) {
 
         this.allowed = allowed;
         this.kickMessage = kickMessagee;
