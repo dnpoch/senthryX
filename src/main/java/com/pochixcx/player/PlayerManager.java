@@ -1,5 +1,6 @@
 package com.pochixcx.player;
 
+import static com.pochixcx.Sentrix.CONFIG_PATH;
 import static com.pochixcx.Sentrix.LOGGER;
 
 import java.io.File;
@@ -13,24 +14,21 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import net.fabricmc.loader.api.FabricLoader;
-
 public class PlayerManager {
     private static HashMap<String, Player> whitelist = new HashMap<String, Player>();
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    private static final File config = FabricLoader.getInstance().getConfigDir().resolve("sentrix-players.json")
-            .toFile();
+    private static final File players = new File(CONFIG_PATH, "players.json");
 
     public static void load() {
         LOGGER.info("Loading players...");
 
         try {
-            if (!config.exists()) {
+            if (!players.exists()) {
                 LOGGER.info("No player file found, creating one....");
-                config.getParentFile().mkdirs();
-                config.createNewFile();
+                players.getParentFile().mkdirs();
+                players.createNewFile();
 
-                Writer writer = new FileWriter(config, false);
+                Writer writer = new FileWriter(players, false);
                 gson.toJson(whitelist, writer);
                 writer.flush();
                 writer.close();
@@ -47,7 +45,7 @@ public class PlayerManager {
 
     private static void refresh() {
         try {
-            FileReader reader = new FileReader(config);
+            FileReader reader = new FileReader(players);
             Type type = new TypeToken<HashMap<String, Player>>() {
             }.getType();
             HashMap<String, Player> map = gson.fromJson(reader, type);
@@ -83,7 +81,7 @@ public class PlayerManager {
             Player player = new Player(username, ip);
 
             whitelist.put(username, player);
-            Writer writer = new FileWriter(config, false);
+            Writer writer = new FileWriter(players, false);
             gson.toJson(whitelist, writer);
             writer.flush();
             writer.close();
@@ -103,7 +101,7 @@ public class PlayerManager {
 
         try {
             whitelist.remove(username);
-            Writer writer = new FileWriter(config, false);
+            Writer writer = new FileWriter(players, false);
             gson.toJson(whitelist, writer);
             writer.flush();
             writer.close();
@@ -128,7 +126,7 @@ public class PlayerManager {
         try {
             player.getIps().add(ip);
             player.setDateUpdated();
-            Writer writer = new FileWriter(config, false);
+            Writer writer = new FileWriter(players, false);
             gson.toJson(whitelist, writer);
             writer.flush();
             writer.close();
@@ -150,7 +148,7 @@ public class PlayerManager {
             if (player.getIps().contains(ip)) {
                 player.getIps().remove(ip);
                 player.setDateUpdated();
-                Writer writer = new FileWriter(config, false);
+                Writer writer = new FileWriter(players, false);
                 gson.toJson(whitelist, writer);
                 writer.flush();
                 writer.close();

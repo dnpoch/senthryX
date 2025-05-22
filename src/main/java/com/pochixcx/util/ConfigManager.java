@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 
 public class ConfigManager {
 
-    public static void init() {
+    public static void init() throws IOException {
         if (!DC_CONFIG.exists()) {
             LOGGER.info("No config file found, creating one");
             try {
@@ -33,7 +33,7 @@ public class ConfigManager {
         }
     }
 
-    public static void create() throws IOException {
+    private static void create() throws IOException {
         Config config = new Config();
         DC_CONFIG.getParentFile().mkdirs();
         DC_CONFIG.createNewFile();
@@ -47,7 +47,7 @@ public class ConfigManager {
 
     }
 
-    public static void load() throws FileNotFoundException {
+    private static void load() throws FileNotFoundException {
         FileReader reader = new FileReader(DC_CONFIG);
 
         CONFIG = new Gson().fromJson(reader, Config.class);

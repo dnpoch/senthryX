@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Player {
-    private String username;
+    private final String username;
     private ArrayList<String> linked_ips;
-    private Date dateCreated;
+    private final Date dateCreated;
     private Date dateUpdated;
 
     public Player(String username, String ip) {
@@ -15,10 +16,6 @@ public class Player {
         this.linked_ips = new ArrayList<String>(List.of(ip));
         this.dateCreated = new Date();
         this.dateUpdated = new Date();
-    }
-
-    public String getUsername() {
-        return this.username;
     }
 
     public ArrayList<String> getIps() {
