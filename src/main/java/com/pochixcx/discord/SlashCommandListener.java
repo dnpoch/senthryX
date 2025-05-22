@@ -78,7 +78,7 @@ public class SlashCommandListener extends ListenerAdapter {
                 }
                 try {
                     PlayerManager.addPlayerIp(username, ip);
-                    event.reply("**IP added, " + username + "can now access the server**").setEphemeral(true)
+                    event.reply("**IP added, " + username + " can now access the server**").setEphemeral(true)
                             .queue();
                     return;
 
@@ -86,29 +86,6 @@ public class SlashCommandListener extends ListenerAdapter {
                     event.reply("Error: " + e.getMessage()).setEphemeral(true).queue();
                     return;
                 }
-            }
-
-            if (event.getName().equals("remove_ip")) {
-
-                String username = event.getOption("username").getAsString();
-                String ip = event.getOption("ip").getAsString();
-
-                if (!Utils.isValidIp(ip)) {
-                    event.reply("**Invalid IP format**").setEphemeral(true).queue();
-                    return;
-                }
-
-                try {
-                    PlayerManager.removePlayerIp(username, ip);
-                    event.reply("**Player IP removed**").setEphemeral(true).queue();
-                    return;
-
-                } catch (Exception e) {
-                    event.reply("Error: " + e.getMessage()).setEphemeral(true).queue();
-
-                    return;
-                }
-
             }
 
             if (event.getName().equals("player_count")) {

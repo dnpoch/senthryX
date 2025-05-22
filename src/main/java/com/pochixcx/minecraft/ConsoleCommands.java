@@ -90,31 +90,6 @@ public class ConsoleCommands {
                                                         return 0;
                                                     }
                                                 }))))
-                        .then(CommandManager.literal("remove")
-                                .then(CommandManager.argument("username", StringArgumentType.string())
-                                        .then(CommandManager.argument("ip", StringArgumentType.string())
-                                                .executes(ctx -> {
-                                                    String username = StringArgumentType.getString(ctx, "username");
-                                                    String ip = StringArgumentType.getString(ctx, "ip");
-
-                                                    if (!Utils.isValidIp(ip)) {
-                                                        ctx.getSource().sendError(Text.literal("Invalid IP format"));
-                                                        return 0;
-                                                    }
-
-                                                    try {
-                                                        PlayerManager.removePlayerIp(username, ip);
-
-                                                        ctx.getSource().sendFeedback(
-                                                                () -> Text.literal("Player IP removed "), false);
-
-                                                        return Command.SINGLE_SUCCESS;
-                                                    } catch (PlayerManagerException e) {
-                                                        ctx.getSource()
-                                                                .sendError(Text.literal(e.getMessage()));
-                                                        return 0;
-                                                    }
-                                                }))))
 
                 )
                 .then(CommandManager.literal("reload")

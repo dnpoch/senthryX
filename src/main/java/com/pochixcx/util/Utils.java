@@ -53,28 +53,17 @@ public class Utils {
                                 .addOptions(new OptionData(OptionType.STRING, "username", "Username of the player",
                                                 true),
                                                 new OptionData(OptionType.STRING, "ip", "IP address of the player",
-                                                                true))
-                                .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
+                                                                true)));
 
                 commands.addCommands(Commands.slash("remove_player", "Removes a player from the whitelist")
                                 .setContexts(InteractionContextType.GUILD)
-                                .addOption(OptionType.STRING, "name", "Username of thhe player to remove", true)
-                                .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
+                                .addOption(OptionType.STRING, "name", "Username of thhe player to remove", true));
 
                 commands.addCommands(Commands.slash("add_ip", "To add a new player IP address")
                                 .setContexts(InteractionContextType.GUILD)
                                 .addOptions(new OptionData(OptionType.STRING, "username", "Username of the player",
                                                 true),
                                                 new OptionData(OptionType.STRING, "ip", "New IP address of the player",
-                                                                true))
-                                .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
-
-                commands.addCommands(Commands.slash("remove_ip", "To remove a player's IP address")
-                                .setContexts(InteractionContextType.GUILD)
-                                .addOptions(new OptionData(OptionType.STRING, "username", "Username of the player",
-                                                true),
-                                                new OptionData(OptionType.STRING, "ip",
-                                                                "IP address of the player to remove",
                                                                 true))
                                 .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
 
