@@ -27,13 +27,8 @@ import com.pochixcx.util.Utils;
 
 public class Sentrix implements ModInitializer {
 	public static final String MOD_ID = "sentrix-fabric";
-	// private static final File config_path =
-	// FabricLoader.getInstance().getConfigDir().toFile();
 	public static final File CONFIG_PATH = new File(FabricLoader.getInstance().getConfigDir().toFile(), MOD_ID);
-	public static final File DC_CONFIG = new File(CONFIG_PATH, "discord-config.json");
-	// public static final File DC_CONFIG = new
-	// File(FabricLoader.getInstance().getConfigDir().toFile(),
-	// "sentrix-discord.json");
+	public static final File DC_CONFIG = new File(CONFIG_PATH, "config.json");
 	public static Config CONFIG;
 	public static TextChannel ADMIN_CHANNEL;
 	public static ArrayList<TextChannel> BROADCAST_CHANNELS = new ArrayList<TextChannel>();

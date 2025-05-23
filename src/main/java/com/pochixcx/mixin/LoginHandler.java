@@ -30,7 +30,7 @@ public class LoginHandler {
     private MinecraftServer server;
 
     @Inject(at = @At("HEAD"), method = "onHello", cancellable = true)
-    private void onHello(LoginHelloC2SPacket packet, CallbackInfo info) {
+    private void onLoginHello(LoginHelloC2SPacket packet, CallbackInfo info) {
         this.ip = extractIp(connection.getAddress().toString());
         this.username = packet.name();
         this.uuid = packet.profileId();
