@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "sentrix-fabric",
+	"id": "sentriX",
 	"version": "${version}",
-	"name": "SentriX-fabric",
-	"description": "IP based access server access control for fabric servers.",
+	"name": "SentriX",
+	"description": "A username-IP based whitelist system server-side mod for offline mode servers that enforces access control based on both username and IP address.",
 	"authors": [
 		"pochixcx"
 	],
