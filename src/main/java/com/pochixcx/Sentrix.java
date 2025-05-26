@@ -26,7 +26,7 @@ import com.pochixcx.util.ConfigManager;
 import com.pochixcx.util.Utils;
 
 public class Sentrix implements ModInitializer {
-	public static final String MOD_ID = "sentrix-fabric";
+	public static final String MOD_ID = "sentrix";
 	public static final File CONFIG_PATH = new File(FabricLoader.getInstance().getConfigDir().toFile(), MOD_ID);
 	public static final File DC_CONFIG = new File(CONFIG_PATH, "config.json");
 	public static Config CONFIG;
