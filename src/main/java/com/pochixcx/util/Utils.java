@@ -48,14 +48,14 @@ public class Utils {
         public static void updateDiscordCommands() {
                 CommandListUpdateAction commands = jda.updateCommands();
 
-                commands.addCommands(Commands.slash("whitelist", "Whitelist a new player")
+                commands.addCommands(Commands.slash("whitelist_add", "Whitelist a new player")
                                 .setContexts(InteractionContextType.GUILD)
                                 .addOptions(new OptionData(OptionType.STRING, "username", "Username of the player",
                                                 true),
                                                 new OptionData(OptionType.STRING, "ip", "IP address of the player",
                                                                 true)));
 
-                commands.addCommands(Commands.slash("remove_player", "Removes a player from the whitelist")
+                commands.addCommands(Commands.slash("whitelist_remove", "Removes a player from the whitelist")
                                 .setContexts(InteractionContextType.GUILD)
                                 .addOption(OptionType.STRING, "name", "Username of thhe player to remove", true));
 
@@ -71,6 +71,11 @@ public class Utils {
                                 .setContexts(InteractionContextType.GUILD)
                                 .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
 
+                // commands.addCommands(Commands.slash("info", "Information about the bot")
+                //                 .setContexts(InteractionContextType.GUILD)
+                //                 .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
+
                 commands.queue();
         }
+
 }

@@ -32,7 +32,7 @@ public class SlashCommandListener extends ListenerAdapter {
                 return;
             }
 
-            if (event.getName().equals("whitelist")) {
+            if (event.getName().equals("whitelist_add")) {
 
                 String username = event.getOption("username").getAsString();
                 String ip = event.getOption("ip").getAsString();
@@ -53,7 +53,7 @@ public class SlashCommandListener extends ListenerAdapter {
                 }
             }
 
-            if (event.getName().equals("remove_player")) {
+            if (event.getName().equals("whitelist_remove")) {
 
                 try {
                     String name = event.getOption("name").getAsString();
