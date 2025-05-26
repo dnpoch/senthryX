@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "sentriX",
+	"id": "sentrix",
 	"version": "${version}",
 	"name": "SentriX",
 	"description": "A username-IP based whitelist system server-side mod for offline mode servers that enforces access control based on both username and IP address.",
@@ -11,7 +11,7 @@
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/modid/icon.png",
 	"environment": "server",
 	"entrypoints": {
