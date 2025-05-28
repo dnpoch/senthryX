@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.pochixcx.minecraft.event.LoginEvent;
 import com.pochixcx.minecraft.event.LoginResult;
-
+@Deprecated
 @Mixin(ServerLoginNetworkHandler.class)
 public class LoginHandler {
 
