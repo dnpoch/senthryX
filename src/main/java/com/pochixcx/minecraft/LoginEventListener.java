@@ -1,7 +1,7 @@
 package com.pochixcx.minecraft;
 
 import static com.pochixcx.Sentrix.ADMIN_CHANNEL;
-import static com.pochixcx.Sentrix.BROADCAST_CHANNELS;
+// import static com.pochixcx.Sentrix.BROADCAST_CHANNELS;
 import static com.pochixcx.Sentrix.CONFIG;
 import static com.pochixcx.Sentrix.jda;
 import static com.pochixcx.Sentrix.LOGGER;
@@ -16,8 +16,9 @@ import com.pochixcx.util.Utils;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import net.dv8tion.jda.api.exceptions.MissingAccessException;
 
+@Deprecated
+@SuppressWarnings("unused")
 public class LoginEventListener {
 
     public static void init() {
@@ -59,17 +60,17 @@ public class LoginEventListener {
                     .setColor(0xFF0000)
                     .build();
 
-            BROADCAST_CHANNELS.forEach(channel -> {
-                try {
-                    channel.sendMessageEmbeds(embed).queue();
-                } catch (Exception e) {
-                    if (e instanceof MissingAccessException) {
-                        LOGGER.error("Error sending message to channel: " + channel.getName() + " " + e.getMessage());
-                        return;
-                    }
+            // BROADCAST_CHANNELS.forEach(channel -> {
+            //     try {
+            //         channel.sendMessageEmbeds(embed).queue();
+            //     } catch (Exception e) {
+            //         if (e instanceof MissingAccessException) {
+            //             LOGGER.error("Error sending message to channel: " + channel.getName() + " " + e.getMessage());
+            //             return;
+            //         }
 
-                }
-            });
+            //     }
+            // });
         }
 
         return LoginResult.deny(CONFIG.unknown_ip_message);
