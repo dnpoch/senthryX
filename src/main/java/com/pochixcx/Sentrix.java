@@ -12,14 +12,14 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pochixcx.discord.SlashCommandListener;
-import com.pochixcx.minecraft.ConsoleCommands;
-import com.pochixcx.minecraft.LoginEventListener;
+// import com.pochixcx.minecraft.LoginEventListener;
+import com.pochixcx.minecraft.commands.ConsoleCommands;
+import com.pochixcx.minecraft.listener.LoginEventHandler;
 import com.pochixcx.player.PlayerManager;
 import com.pochixcx.util.Config;
 import com.pochixcx.util.ConfigManager;
@@ -31,7 +31,7 @@ public class Sentrix implements ModInitializer {
 	public static final File DC_CONFIG = new File(CONFIG_PATH, "config.json");
 	public static Config CONFIG;
 	public static TextChannel ADMIN_CHANNEL;
-	public static ArrayList<TextChannel> BROADCAST_CHANNELS = new ArrayList<TextChannel>();
+	public static TextChannel LOG_CHANNEL;
 	public static JDA jda;
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -47,9 +47,7 @@ public class Sentrix implements ModInitializer {
 			ConfigManager.init();
 
 			if (!CONFIG.activate) {
-				LOGGER.info("-----------------------------------------");
 				LOGGER.info("SentriX is disabled, please enable it in the config file");
-				LOGGER.info("-----------------------------------------");
 				return;
 			}
 
@@ -74,21 +72,29 @@ public class Sentrix implements ModInitializer {
 					throw new NullPointerException("Invalid admin channel id: " + CONFIG.admin_channel_id);
 				}
 
-				CONFIG.logging_channels.forEach((channel_id) -> {
-					TextChannel channel = jda.getTextChannelById(channel_id);
-					if (channel == null) {
-						throw new NullPointerException("Invalid broadcast channel id: " + channel_id);
-					}
-					BROADCAST_CHANNELS.add(channel);
-				});
+				LOG_CHANNEL = jda.getTextChannelById(CONFIG.public_log_channel);
+				if (CONFIG.enable_public_logging && LOG_CHANNEL == null) {
+					throw new NullPointerException("Invalid public log channel id: " + CONFIG.public_log_channel);
+				}
+
+				// CONFIG.logging_channels.forEach((channel_id) -> {
+				// 	TextChannel channel = jda.getTextChannelById(channel_id);
+				// 	if (channel == null) {
+				// 		throw new NullPointerException("Invalid broadcast channel id: " + channel_id);
+				// 	}
+				// 	BROADCAST_CHANNELS.add(channel);
+				// });
 
 			}
 
 			CommandRegistrationCallback.EVENT
 					.register((dispatcher, registryAccess, environment) -> ConsoleCommands.register(dispatcher));
 
-			LoginEventListener.init();
+			LoginEventHandler.register();
 
+			// LoginEventListener.init();
+
+			// Gracefule discord bot shutdown on server stop
 			ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
 				if (jda != null) {
 					LOGGER.info("Shutting down SentriX discord bot...");
