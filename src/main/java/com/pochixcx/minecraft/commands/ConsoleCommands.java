@@ -1,4 +1,6 @@
-package com.pochixcx.minecraft;
+package com.pochixcx.minecraft.commands;
+
+import static com.pochixcx.Sentrix.MOD_ID;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -13,7 +15,7 @@ import net.minecraft.text.Text;
 
 public class ConsoleCommands {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        dispatcher.register(CommandManager.literal("sentrix")
+        dispatcher.register(CommandManager.literal(MOD_ID)
                 .requires(source -> !source.isExecutedByPlayer())
                 .then(CommandManager.literal("whitelist")
                         .then(CommandManager.literal("add")
