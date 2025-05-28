@@ -5,6 +5,7 @@ import java.util.UUID;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 
+@Deprecated
 public interface LoginEvent {
 
     Event<OnPlayerLogin> ON_PLAYER_LOGIN = EventFactory.createArrayBacked(OnPlayerLogin.class,

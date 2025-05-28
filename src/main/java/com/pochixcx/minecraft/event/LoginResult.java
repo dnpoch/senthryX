@@ -1,5 +1,6 @@
 package com.pochixcx.minecraft.event;
 
+@Deprecated
 public class LoginResult {
 
     private final boolean allowed;
