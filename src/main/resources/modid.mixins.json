@@ -3,7 +3,8 @@
 	"package": "com.pochixcx.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"LoginHandler"
+		"LoginHandler",
+		"ServerLoginNetworkHandlerAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1
