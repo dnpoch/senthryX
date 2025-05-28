@@ -58,7 +58,7 @@ public class LoginEventHandler {
         LOGGER.info("connection attempt info: {} " + "username: " + username + " ip_address: "
                 + ip_address);
 
-        sync.waitFor(CompletableFuture.runAsync(() -> verifyer(handler, username, ip_address, server)));
+        sync.waitFor(CompletableFuture.runAsync(() -> verifyer(handler, username, ip_address, server), server));
 
     }
 
