@@ -55,6 +55,12 @@ public class LoginEventHandler {
         String uuid = profile.getId().toString(); // Not used, but can be logged if needed
         String ip_address = inetAddress.getAddress().getHostAddress();
 
+        if (username.length() == 0 || !(Utils.isValidIp(ip_address))) {
+            LOGGER.warn("Username or IP address is empty, disconnecting player.");
+            server.execute(() -> handler.disconnect(Text.of("Invalid")));
+            return;
+        }
+
         LOGGER.info("connection attempt info: {} " + "username: " + username + " ip_address: "
                 + ip_address);
 
@@ -86,7 +92,7 @@ public class LoginEventHandler {
                 ADMIN_CHANNEL.sendMessageEmbeds(embed).queue();
             }
 
-            LOGGER.info("discconected not whitelisted: " + username);
+            LOGGER.info("disconnected not whitelisted: " + username);
             server.execute(() -> handler.disconnect(Text.of(CONFIG.kick_message)));
             return;
         }
