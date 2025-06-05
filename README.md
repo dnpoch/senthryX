@@ -18,30 +18,34 @@ A username-IP based whitelist system server-side mod for offline mode servers th
 ### Installation guide
 
 1. Download the Mod
-   Download the mod from the official repository or a trusted source.
+
+   - Download the mod from the official repository or a trusted source.
 
 2. Install the Mod
-   Place the downloaded mod file into the `mods` folder within your Minecraft directory.
+
+   - Place the downloaded mod file into the `mods` folder within your Minecraft directory.
 
 3. Initial Server Startup
-   Start or restart your server. On the first startup, an error is expected—this is normal. During this process, a file named `config.json` will be generated in the `config/sentrix` directory.
 
-4. Configure the Discord bot if you want to enable the Discord integration feature.
+   - Start or restart your server. On the first startup, an error is expected—this is normal. During this process, a file named `config.json` will be generated in the `config/sentrix` directory.
+
+4. Configure the Discord bot if you want to enable the Discord integration feature, [see step by step guide here.](#configure-discord-bot).
 
 5. Configure the Mod
-   Open the `config.json` file and adjust the settings as needed. Refer to the Configuration Values section below for guidance. [Configuration values](#configuration-values)
+
+   - Open the `config.json` file and adjust the settings as needed. Refer to the Configuration Values section below for guidance. [Configuration values](#configuration-values)
 
 6. Restart the Server
-   Once you’ve configured the config.json file, restart your server to apply the changes.
+   - Once you’ve configured the config.json file, restart your server to apply the changes.
 
 ---
 
-### Configuration and commands
+#### Configuration Values
 
 <details>
-<summary><strong>Configuration values</strong></summary>
+<summary><strong>Configuration Values</strong></summary>
 
-To configure, navigate to `/config/setrix-fabric/config.json`
+To configure, navigate to `/config/setrix/config.json`
 
 | Key                   | Value            | Description                                                                                               |
 | --------------------- | ---------------- | --------------------------------------------------------------------------------------------------------- |
@@ -58,8 +62,10 @@ To configure, navigate to `/config/setrix-fabric/config.json`
 
 </details>
 
+### Console Commands
+
 <details>
-<summary><strong>Console commands</strong></summary>
+<summary><strong>Console Commands</strong></summary>
 
 | Command                                    | Usage                                                                  |
 | ------------------------------------------ | ---------------------------------------------------------------------- |
@@ -71,8 +77,10 @@ To configure, navigate to `/config/setrix-fabric/config.json`
 
 </details>
 
+### Discord Admin Commands
+
 <details>
-<summary><strong>Discord admin commands</strong></summary>
+<summary><strong>Discord Admin Commands</strong></summary>
 
 | Command                            | Usage                                                             |
 | ---------------------------------- | ----------------------------------------------------------------- |
@@ -84,8 +92,10 @@ To configure, navigate to `/config/setrix-fabric/config.json`
 
 </details>
 
+### Configure Discord Bot
+
 <details>
-<summary><strong>Configure discord bot</strong></summary>
+<summary><strong>Configure Discord Bot</strong></summary>
 
 #### Step 1: Create a Discord Bot
 
