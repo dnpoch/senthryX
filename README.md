@@ -40,7 +40,7 @@ A username-IP based whitelist system server-side mod for offline mode servers th
 
 ---
 
-#### Configuration Values
+### Configuration Values
 
 <details>
 <summary><strong>Configuration Values</strong></summary>
