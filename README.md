@@ -1,6 +1,6 @@
 ## Description
 
-A username-IP based whitelist system server-side mod for offline mode servers that enforces access control based on both username and IP address.
+A username-IP based whitelist system server-side mod that enforces access control based on both username and IP address.
 
 ### Features
 
@@ -25,6 +25,9 @@ A username-IP based whitelist system server-side mod for offline mode servers th
 
    - Place the downloaded mod file into the `mods` folder within your Minecraft directory.
 
+   - In `server.properties`, it’s recommended to disable the vanilla whitelist (white-list=false) to allow the mod to fully handle access control based on usernames and IPs.
+     - Optionally, you can leave the vanilla whitelist enabled for an additional layer of security, but this is not required.
+
 3. Initial Server Startup
 
    - Start or restart your server. On the first startup, an error is expected—this is normal. During this process, a file named `config.json` will be generated in the `config/sentrix` directory.
@@ -43,7 +46,7 @@ A username-IP based whitelist system server-side mod for offline mode servers th
 ### Configuration Values
 
 <details>
-<summary><strong>Configuration Values</strong></summary>
+<summary><strong>Click to expand</strong></summary>
 
 To configure, navigate to `/config/setrix/config.json`
 
@@ -65,7 +68,7 @@ To configure, navigate to `/config/setrix/config.json`
 ### Console Commands
 
 <details>
-<summary><strong>Console Commands</strong></summary>
+<summary><strong>Click to expand</strong></summary>
 
 | Command                                    | Usage                                                                  |
 | ------------------------------------------ | ---------------------------------------------------------------------- |
@@ -80,7 +83,7 @@ To configure, navigate to `/config/setrix/config.json`
 ### Discord Admin Commands
 
 <details>
-<summary><strong>Discord Admin Commands</strong></summary>
+<summary><strong>Click to expand</strong></summary>
 
 | Command                            | Usage                                                             |
 | ---------------------------------- | ----------------------------------------------------------------- |
@@ -95,7 +98,7 @@ To configure, navigate to `/config/setrix/config.json`
 ### Configure Discord Bot
 
 <details>
-<summary><strong>Configure Discord Bot</strong></summary>
+<summary><strong>Click to expand</strong></summary>
 
 #### Step 1: Create a Discord Bot
 
@@ -117,9 +120,13 @@ Still under the Bot section:
 
 1. Scroll down to Privileged Gateway Intents.
 
-2 Enable: - Presence Intent
+2. Enable: - Presence Intent
 
-    - Server Members Intent
+   - Prensence Intent
+
+   - Server Members Intent
+
+   - Message Content Intent
 
 3. Click Save Changes at the bottom.
 
@@ -136,10 +143,6 @@ Still under the Bot section:
    - Send Messages
 
    - Read Message History
-
-   - Manage Messages (if needed)
-
-   - Manage Roles (if needed for whitelist commands)
 
 4. Copy the generated URL and open it in your browser.
 
