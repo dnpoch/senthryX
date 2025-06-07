@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "sentrix",
+	"id": "senthryx",
 	"version": "${version}",
-	"name": "SentriX",
+	"name": "senthryX",
 	"description": "A username-IP based whitelist system server-side mod for offline mode servers that enforces access control based on both username and IP address.",
 	"authors": [
 		"pochixcx"
@@ -16,7 +16,7 @@
 	"environment": "server",
 	"entrypoints": {
 		"main": [
-			"com.pochixcx.Sentrix"
+			"com.pochixcx.Senthryx"
 		]
 	},
 	"mixins": [
