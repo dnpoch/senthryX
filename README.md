@@ -1,42 +1,57 @@
+> **_Disclaimer:_** > _*This mod collects and logs player IP addresses **solely** for the purpose of maintaining server integrity, and enforcing username-IP-based access control.
+> All collected data is used exclusively for the features provided by this mod*_.
+>
+> **Before using this mod, server administrators must ensure:**
+>
+> - **Player Consent:** Players must be informed and acknowledge that their IP addresses will be collected and linked to their usernames for access control.
+>
+> - **Data Use:** Collected IPs are used solely for access enforcement and are stored internally — never shared outside the server staff.
+>
+> - **Data Security:** Server owners are responsible for securing this information and ensuring only authorized administrators have access.
+
 ## Description
 
-A username-IP based whitelist system server-side mod that enforces access control based on both username and IP address.
+**SenthryX** is a server-side whitelist mod that binds usernames to specific IP addresses. It enforces strict access control by allowing only whitelisted and trusted players to join the server. This prevents unauthorized access, blocks login attempts from unbound IP addresses, and protects against username spoofing. senthryX is especially recommended for servers running in **offline mode**. It also supports multiple IP bindings per player, making it compatible with dynamic IP addresses. For added convenience, SentriX integrates with a Discord bot that provides real-time alerts for failed login attempts and enables server management through bot commands.
 
 ### Features
 
-- Access control based on username and IP address
-  - Whitelist players using username and their IP address (ex: `whitelist_add player1 127.0.0.1` via discord command or `sentrix whitelist add player1 127.0.0.1` via console command)
-  - Username-IP Binding: Each player has a list of associated IP addresses linked to their username and can only access the server from those addresses.
-  - Strict Access Control: Only whitelisted players connecting from their approved IPs are allowed to join.
-  - Unauthorized Attempt Blocking: Denies access to non-whitelisted usernames or IPs not associated with the user.
-  - Can add new ip for user in case of dynamically changing ip address.
-- Discord bot integration:
+- **Access control based on username and IP address**
+
+  - Whitelist players by username and IP using commands like `whitelist_add player1 127.0.0.1` (Discord) or `sentrix whitelist add player1 127.0.0.1` (console).
+
+  - Players can only connect from approved IPs tied to their usernames; multiple IPs per user are supported.
+
+  - Blocks connection attempts from unknown players or unapproved IPs.
+
+  - Supports adding new IPs for users with dynamic addresses.
+
+- **Discord bot integration:**
   - Access attempt alerts.
-  - Basic server management commands for admins (e.g., add/remove whitelist entries).
-  - Discord bot can also be disabled.
+  - Manage whitelist entries directly from Discord.
+  - Enable or disable bot features as needed.
 
 ### Installation guide
 
 1. Download the Mod
 
-   - Download the mod from the official repository or a trusted source.
+   - Download the mod [here](https://modrinth.com/mod/sentrix).
 
 2. Install the Mod
 
    - Place the downloaded mod file into the `mods` folder within your Minecraft directory.
 
-   - In `server.properties`, it’s recommended to disable the vanilla whitelist (white-list=false) to allow the mod to fully handle access control based on usernames and IPs.
-     - Optionally, you can leave the vanilla whitelist enabled for an additional layer of security, but this is not required.
+   - In `server.properties`, it’s recommended to disable the built in whitelist (white-list=false) to allow the mod to fully handle access control based on usernames and IPs.
+     - Optionally, you can leave the built in whitelist enabled for an additional layer of security, but this is not required.
 
 3. Initial Server Startup
 
-   - Start or restart your server. On the first startup, an error is expected—this is normal. During this process, a file named `config.json` will be generated in the `config/sentrix` directory.
+   - Start or restart your server. On the first startup, an error is expected—this is normal. During this process, a file named `config.json` will be generated in the `config/senthryX` directory.
 
-4. Configure the Discord bot if you want to enable the Discord integration feature, [see step by step guide here.](#configure-discord-bot).
+4. Configure the Discord bot if you want to enable the Discord integration feature. **_See the details for step by step process below_**.
 
 5. Configure the Mod
 
-   - Open the `config.json` file and adjust the settings as needed. Refer to the Configuration Values section below for guidance. [Configuration values](#configuration-values)
+   - Open the `config.json` file and adjust the settings as needed. Refer to the **_Configuration Values_** section below for guidance.
 
 6. Restart the Server
    - Once you’ve configured the config.json file, restart your server to apply the changes.
@@ -48,7 +63,7 @@ A username-IP based whitelist system server-side mod that enforces access contro
 <details>
 <summary><strong>Click to expand</strong></summary>
 
-To configure, navigate to `/config/setrix/config.json`
+To configure, navigate to `/config/senthryX/config.json`
 
 | Key                   | Value            | Description                                                                                               |
 | --------------------- | ---------------- | --------------------------------------------------------------------------------------------------------- |
@@ -70,13 +85,13 @@ To configure, navigate to `/config/setrix/config.json`
 <details>
 <summary><strong>Click to expand</strong></summary>
 
-| Command                                    | Usage                                                                  |
-| ------------------------------------------ | ---------------------------------------------------------------------- |
-| /sentrix whitelist add `<username>` `<ip>` | Command for whitelisting a player.                                     |
-| /sentrix whitelist remove `<username>`     | Command to remove a player from whitelist entry.                       |
-| /sentrix ip add `<username>` `<ip>`        | Command to add a new ip for player.                                    |
-| /sentrix reload                            | To reload the player list in case of editing player list file manually |
-| /sentrix count                             | To count total whitelisted players.                                    |
+| Command                                     | Usage                                                                  |
+| ------------------------------------------- | ---------------------------------------------------------------------- |
+| /senthryx whitelist add `<username>` `<ip>` | Command for whitelisting a player.                                     |
+| /senthryx whitelist remove `<username>`     | Command to remove a player from whitelist entry.                       |
+| /senthryx ip add `<username>` `<ip>`        | Command to add a new ip for player.                                    |
+| /senthryx reload                            | To reload the player list in case of editing player list file manually |
+| /senthryx count                             | To count total whitelisted players.                                    |
 
 </details>
 
