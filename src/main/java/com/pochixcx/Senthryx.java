@@ -25,8 +25,8 @@ import com.pochixcx.util.Config;
 import com.pochixcx.util.ConfigManager;
 import com.pochixcx.util.Utils;
 
-public class Sentrix implements ModInitializer {
-	public static final String MOD_ID = "sentrix";
+public class Senthryx implements ModInitializer {
+	public static final String MOD_ID = "senthryx";
 	public static final File CONFIG_PATH = new File(FabricLoader.getInstance().getConfigDir().toFile(), MOD_ID);
 	public static final File DC_CONFIG = new File(CONFIG_PATH, "config.json");
 	public static Config CONFIG;
@@ -39,7 +39,7 @@ public class Sentrix implements ModInitializer {
 	public void onInitialize() {
 
 		LOGGER.info("-----------------------------------------");
-		LOGGER.info("SentriX-fabric");
+		LOGGER.info("senthryX");
 		LOGGER.info("By pochixcx");
 		LOGGER.info("-----------------------------------------");
 
@@ -78,11 +78,12 @@ public class Sentrix implements ModInitializer {
 				}
 
 				// CONFIG.logging_channels.forEach((channel_id) -> {
-				// 	TextChannel channel = jda.getTextChannelById(channel_id);
-				// 	if (channel == null) {
-				// 		throw new NullPointerException("Invalid broadcast channel id: " + channel_id);
-				// 	}
-				// 	BROADCAST_CHANNELS.add(channel);
+				// TextChannel channel = jda.getTextChannelById(channel_id);
+				// if (channel == null) {
+				// throw new NullPointerException("Invalid broadcast channel id: " +
+				// channel_id);
+				// }
+				// BROADCAST_CHANNELS.add(channel);
 				// });
 
 			}
@@ -110,7 +111,7 @@ public class Sentrix implements ModInitializer {
 		}
 
 		LOGGER.info("-----------------------------------------");
-		LOGGER.info("SentriX-fabric");
+		LOGGER.info("senthryX");
 		LOGGER.info("Loaded");
 		LOGGER.info("-----------------------------------------");
 

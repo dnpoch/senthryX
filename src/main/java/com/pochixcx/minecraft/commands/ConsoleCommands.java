@@ -1,6 +1,6 @@
 package com.pochixcx.minecraft.commands;
 
-import static com.pochixcx.Sentrix.MOD_ID;
+import static com.pochixcx.Senthryx.MOD_ID;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;

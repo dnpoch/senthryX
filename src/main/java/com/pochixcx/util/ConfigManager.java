@@ -1,8 +1,8 @@
 package com.pochixcx.util;
 
-import static com.pochixcx.Sentrix.CONFIG;
-import static com.pochixcx.Sentrix.DC_CONFIG;
-import static com.pochixcx.Sentrix.LOGGER;
+import static com.pochixcx.Senthryx.CONFIG;
+import static com.pochixcx.Senthryx.DC_CONFIG;
+import static com.pochixcx.Senthryx.LOGGER;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

@@ -1,7 +1,7 @@
 package com.pochixcx.util;
 
-import static com.pochixcx.Sentrix.CONFIG;
-import static com.pochixcx.Sentrix.jda;
+import static com.pochixcx.Senthryx.CONFIG;
+import static com.pochixcx.Senthryx.jda;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,8 +72,8 @@ public class Utils {
                                 .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
 
                 // commands.addCommands(Commands.slash("info", "Information about the bot")
-                //                 .setContexts(InteractionContextType.GUILD)
-                //                 .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
+                // .setContexts(InteractionContextType.GUILD)
+                // .setDefaultPermissions(DefaultMemberPermissions.DISABLED));
 
                 commands.queue();
         }

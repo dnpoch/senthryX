@@ -1,10 +1,10 @@
 package com.pochixcx.minecraft;
 
-import static com.pochixcx.Sentrix.ADMIN_CHANNEL;
+import static com.pochixcx.Senthryx.ADMIN_CHANNEL;
 // import static com.pochixcx.Sentrix.BROADCAST_CHANNELS;
-import static com.pochixcx.Sentrix.CONFIG;
-import static com.pochixcx.Sentrix.jda;
-import static com.pochixcx.Sentrix.LOGGER;
+import static com.pochixcx.Senthryx.CONFIG;
+import static com.pochixcx.Senthryx.jda;
+import static com.pochixcx.Senthryx.LOGGER;
 
 import java.util.UUID;
 
@@ -61,15 +61,16 @@ public class LoginEventListener {
                     .build();
 
             // BROADCAST_CHANNELS.forEach(channel -> {
-            //     try {
-            //         channel.sendMessageEmbeds(embed).queue();
-            //     } catch (Exception e) {
-            //         if (e instanceof MissingAccessException) {
-            //             LOGGER.error("Error sending message to channel: " + channel.getName() + " " + e.getMessage());
-            //             return;
-            //         }
+            // try {
+            // channel.sendMessageEmbeds(embed).queue();
+            // } catch (Exception e) {
+            // if (e instanceof MissingAccessException) {
+            // LOGGER.error("Error sending message to channel: " + channel.getName() + " " +
+            // e.getMessage());
+            // return;
+            // }
 
-            //     }
+            // }
             // });
         }
 

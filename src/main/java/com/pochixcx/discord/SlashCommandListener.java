@@ -1,7 +1,7 @@
 package com.pochixcx.discord;
 
-import static com.pochixcx.Sentrix.ADMIN_CHANNEL;
-import static com.pochixcx.Sentrix.LOGGER;
+import static com.pochixcx.Senthryx.ADMIN_CHANNEL;
+import static com.pochixcx.Senthryx.LOGGER;
 
 import com.pochixcx.player.PlayerManager;
 import com.pochixcx.util.Utils;

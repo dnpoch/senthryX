@@ -1,10 +1,10 @@
 package com.pochixcx.minecraft.listener;
 
-import static com.pochixcx.Sentrix.LOGGER;
-import static com.pochixcx.Sentrix.jda;
-import static com.pochixcx.Sentrix.ADMIN_CHANNEL;
-import static com.pochixcx.Sentrix.LOG_CHANNEL;
-import static com.pochixcx.Sentrix.CONFIG;
+import static com.pochixcx.Senthryx.LOGGER;
+import static com.pochixcx.Senthryx.jda;
+import static com.pochixcx.Senthryx.ADMIN_CHANNEL;
+import static com.pochixcx.Senthryx.LOG_CHANNEL;
+import static com.pochixcx.Senthryx.CONFIG;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;

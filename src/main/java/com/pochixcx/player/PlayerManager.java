@@ -1,7 +1,7 @@
 package com.pochixcx.player;
 
-import static com.pochixcx.Sentrix.CONFIG_PATH;
-import static com.pochixcx.Sentrix.LOGGER;
+import static com.pochixcx.Senthryx.CONFIG_PATH;
+import static com.pochixcx.Senthryx.LOGGER;
 
 import java.io.File;
 import java.io.FileReader;
