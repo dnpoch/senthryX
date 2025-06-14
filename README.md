@@ -6,7 +6,7 @@
 
 1. Download the Mod
 
-   - Download the mod [modrinth](https://modrinth.com/mod/senthryx) or in the official [GitHub repository](https://github.com/dnpoch/senthryX/releases).
+   - Download the mod via [modrinth](https://modrinth.com/mod/senthryx) or in the official [GitHub repository](https://github.com/dnpoch/senthryX/releases).
 
 2. Install the Mod
 
