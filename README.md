@@ -1,40 +1,12 @@
-> **_Disclaimer:_** > _*This mod collects and logs player IP addresses **solely** for the purpose of maintaining server integrity, and enforcing username-IP-based access control.
-> All collected data is used exclusively for the features provided by this mod*_.
->
-> **Before using this mod, server administrators must ensure:**
->
-> - **Player Consent:** Players must be informed and acknowledge that their IP addresses will be collected and linked to their usernames for access control.
->
-> - **Data Use:** Collected IPs are used solely for access enforcement and are stored internally — never shared outside the server staff.
->
-> - **Data Security:** Server owners are responsible for securing this information and ensuring only authorized administrators have access.
-
 ## Description
 
-**SenthryX** is a server-side whitelist mod that binds usernames to specific IP addresses. It enforces strict access control by allowing only whitelisted and trusted players to join the server. This prevents unauthorized access, blocks login attempts from unbound IP addresses, and protects against username spoofing. senthryX is especially recommended for servers running in **offline mode**. It also supports multiple IP bindings per player, making it compatible with dynamic IP addresses. For added convenience, SentriX integrates with a Discord bot that provides real-time alerts for failed login attempts and enables server management through bot commands.
-
-### Features
-
-- **Access control based on username and IP address**
-
-  - Whitelist players by username and IP using commands like `whitelist_add player1 127.0.0.1` (Discord) or `sentrix whitelist add player1 127.0.0.1` (console).
-
-  - Players can only connect from approved IPs tied to their usernames; multiple IPs per user are supported.
-
-  - Blocks connection attempts from unknown players or unapproved IPs.
-
-  - Supports adding new IPs for users with dynamic addresses.
-
-- **Discord bot integration:**
-  - Access attempt alerts.
-  - Manage whitelist entries directly from Discord.
-  - Enable or disable bot features as needed.
+**SenthryX** is a server-side whitelist mod that binds usernames to specific IP addresses. It enforces strict access control by allowing only whitelisted and trusted players to join the server. This prevents unauthorized access, blocks login attempts from unbound IP addresses, and protects against username spoofing. SenthryX is especially recommended for servers running in **offline mode**. It also supports multiple IP bindings per player, making it compatible with dynamic IP addresses. For added convenience, SenthryX integrates with a Discord bot that provides real-time alerts for failed login attempts and enables server management through bot commands, the bot integration can also be disabled.
 
 ### Installation guide
 
 1. Download the Mod
 
-   - Download the mod [here](https://modrinth.com/mod/sentrix).
+   - Download the mod [modrinth](https://modrinth.com/mod/senthryx) or in the official [Github repository](https://github.com/dnpoch/senthryX/releases).
 
 2. Install the Mod
 
@@ -100,13 +72,12 @@ To configure, navigate to `/config/senthryX/config.json`
 <details>
 <summary><strong>Click to expand</strong></summary>
 
-| Command                            | Usage                                                             |
-| ---------------------------------- | ----------------------------------------------------------------- |
-| /whitelist_add `<username>` `<ip>` | Command for whitelisting a player.                                |
-| /whitelist_remove `<username>`     | Command to remove a player from whitelist entry.                  |
-| /add_ip `<username>` `<ip>`        | Command to add a new ip for player.                               |
-| /sentrix reload                    | To reload the player list in case of editing player list manually |
-| /player_count                      | To count total whitelisteed players.                              |
+| Command                            | Usage                                            |
+| ---------------------------------- | ------------------------------------------------ |
+| /whitelist_add `<username>` `<ip>` | Command for whitelisting a player.               |
+| /whitelist_remove `<username>`     | Command to remove a player from whitelist entry. |
+| /add_ip `<username>` `<ip>`        | Command to add a new ip for player.              |
+| /player_count                      | To count total whitelisteed players.             |
 
 </details>
 
