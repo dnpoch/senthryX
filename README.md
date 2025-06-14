@@ -6,7 +6,7 @@
 
 1. Download the Mod
 
-   - Download the mod [modrinth](https://modrinth.com/mod/senthryx) or in the official [Github repository](https://github.com/dnpoch/senthryX/releases).
+   - Download the mod [modrinth](https://modrinth.com/mod/senthryx) or in the official [GitHub repository](https://github.com/dnpoch/senthryX/releases).
 
 2. Install the Mod
 
@@ -77,7 +77,7 @@ To configure, navigate to `/config/senthryX/config.json`
 | /whitelist_add `<username>` `<ip>` | Command for whitelisting a player.               |
 | /whitelist_remove `<username>`     | Command to remove a player from whitelist entry. |
 | /add_ip `<username>` `<ip>`        | Command to add a new ip for player.              |
-| /player_count                      | To count total whitelisteed players.             |
+| /player_count                      | To count total whitelisted players.              |
 
 </details>
 
